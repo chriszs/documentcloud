@@ -27,14 +27,48 @@ export DEBIAN_FRONTEND=readline
 yes yes| apt-get install -y sun-java6-bin
 export DEBIAN_FRONTEND=noninteractive
 
-PACKAGES='build-essential postgresql-9.0 postgresql-client-9.0
-postgresql-contrib-9.0 libpq-dev git-core mercurial scons libexpat1-dev
-libxml2-dev libxslt-dev postfix ruby ri rdoc irb ruby1.8-dev
-zlib1g-dev libzlib-ruby sqlite3 libsqlite3-dev libcurl4-dev
-checkinstall libbz2-dev graphicsmagick pdftk xpdf libitext-java
-openoffice.org openoffice.org-java-common libtiff4-dev libpng12-dev
-libjpeg62-dev libleptonica-dev tesseract-ocr-dev tesseract-ocr-eng
-xfsprogs libpcre3-dev lzop sysstat libopenssl-ruby'
+PACKAGES='
+build-essential
+postgresql-9.0
+postgresql-client-9.0
+postgresql-contrib-9.0
+libpq-dev
+git-core
+mercurial
+scons
+libexpat1-dev
+libxml2-dev
+libxslt-dev
+postfix
+ruby
+ri
+rdoc
+irb
+ruby1.8-dev
+zlib1g-dev
+libzlib-ruby
+sqlite3
+libsqlite3-dev
+libcurl4-dev
+checkinstall
+libbz2-dev
+graphicsmagick
+pdftk
+xpdf
+libitext-java
+openoffice.org
+openoffice.org-java-common
+libtiff4-dev
+libpng12-dev
+libjpeg62-dev
+libleptonica-dev
+tesseract-ocr-dev
+tesseract-ocr-eng
+xfsprogs
+libpcre3-dev
+lzop
+sysstat
+libopenssl-ruby'
 
 echo $PACKAGES | xargs apt-get install -y
 
