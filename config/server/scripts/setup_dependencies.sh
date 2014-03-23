@@ -28,6 +28,7 @@ libtiff4-dev
 libpng12-dev
 libleptonica-dev
 tesseract-ocr-dev
+tesseract-ocr
 libpcre3-dev
 sysstat
 libbz2-dev
