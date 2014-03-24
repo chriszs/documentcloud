@@ -94,6 +94,9 @@ ______                                      _   _____ _                 _
 EOF
 uname -a | tee -a /etc/motd
 
+# postfix configuration
+perl -pi -e 's/smtpd_use_tls=yes/smtpd_use_tls=no/' /etc/postfix/main.cf
+
 installer_tmp="/home/ubuntu/downloads/"
 mkdir -p $installer_tmp
 cd $installer_tmp
