@@ -9,10 +9,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 sudo apt-get update
 
 PACKAGES='
-postgresql-9.3
 postgresql-client-9.3
-postgresql-contrib-9.3
-libpq-dev
 git-core
 postfix
 sqlite3
@@ -46,14 +43,14 @@ libxml2-dev
 libxslt-dev
 libexpat1-dev
 zlib1g-dev
-libzlib-ruby1.8
-libopenssl-ruby1.8
-ruby1.8
-ri1.8
-rdoc1.8
-irb1.8
-ruby1.8-dev
-rubygems1.8
+libzlib-ruby
+libopenssl-ruby
+ruby
+ri
+rdoc
+irb
+ruby-dev
+rubygems
 '
 
 TESSERACT_LANGUAGES='
@@ -97,6 +94,9 @@ uname -a | tee -a /etc/motd
 # postfix configuration
 perl -pi -e 's/smtpd_use_tls=yes/smtpd_use_tls=no/' /etc/postfix/main.cf
 
+# Despite the fact that a system ruby has been installed via apt
+# we'll use ruby-install and chruby to install a more recent ruby
+
 installer_tmp="/home/ubuntu/downloads/"
 mkdir -p $installer_tmp
 cd $installer_tmp
@@ -120,7 +120,7 @@ tar -xzvf chruby-$chruby_version.tar.gz
 # 
 # # Verify that ruby-install was signed by postmodern
 # wget https://raw.github.com/postmodern/ruby-install/master/pkg/ruby-install-$ruby_install_version.tar.gz.asc
-# gpg --verify ruby-install-0.4.1.tar.gz.asc ruby-install-$ruby_install_version.tar.gz
+# gpg --verify ruby-install-$ruby_install_version.tar.gz.asc ruby-install-$ruby_install_version.tar.gz
 # 
 # # Verify that chruby was signed by postmodern
 # wget https://raw.github.com/postmodern/chruby/master/pkg/chruby-$chruby_version.tar.gz.asc
@@ -134,8 +134,12 @@ make install
 
 echo 'if [ -n "$BASH_VERSION" ] || [ -n "$ZSH_VERSION" ]; then
   source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
 fi' > /etc/profile.d/chruby.sh
 
 source /etc/profile.d/chruby.sh
 
 ruby-install ruby stable
+
+rm -rf "$installer_tmp/ruby-install-$ruby_install_version/"
+rm -rf "$installer_tmp/chruby-$chruby_version/"
