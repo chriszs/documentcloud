@@ -10,6 +10,7 @@ sudo apt-get update
 
 PACKAGES='
 postgresql-client-9.3
+libpq-dev
 git-core
 postfix
 sqlite3

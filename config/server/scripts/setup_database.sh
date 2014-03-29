@@ -12,7 +12,6 @@ PACKAGES='
 postgresql-9.3
 postgresql-client-9.3
 postgresql-contrib-9.3
-libpq-dev
 '
 echo $PACKAGES $TESSERACT_LANGUAGES $RUBY_DEPENDENCIES | xargs apt-get install -y
 
